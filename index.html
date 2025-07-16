@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToyStoreIndia - Order Any Toy via WhatsApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .how-it-works-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .how-it-works-step:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .how-it-works-step:nth-child(1):before {
+            content: "1";
+        }
+        .how-it-works-step:nth-child(2):before {
+            content: "2";
+        }
+        .how-it-works-step:nth-child(3):before {
+            content: "3";
+        }
+        .how-it-works-step:nth-child(4):before {
+            content: "4";
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-robot text-3xl text-green-500"></i>
+                <a href="#" class="text-2xl font-bold text-gray-800">ToyStore<span class="text-green-500">India</span></a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#how-it-works" class="text-gray-600 hover:text-green-500 transition">How It Works</a>
+                <a href="#benefits" class="text-gray-600 hover:text-green-500 transition">Benefits</a>
+                <a href="#faq" class="text-gray-600 hover:text-green-500 transition">FAQ</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4">
+            <a href="#how-it-works" class="block py-2 text-gray-600 hover:text-green-500 transition">How It Works</a>
+            <a href="#benefits" class="block py-2 text-gray-600 hover:text-green-500 transition">Benefits</a>
+            <a href="#faq" class="block py-2 text-gray-600 hover:text-green-500 transition">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Find Any Toy You Want - Just Send Us a Picture!</h1>
+                <p class="text-xl text-gray-600 mb-8">No product listings. No minimum orders. Simply WhatsApp us a picture of the toy you want and we'll get it for you!</p>
+                <a href="https://wa.me/918121612298?text=Hi%20ToyStoreIndia,%20I%20want%20to%20order%20a%20toy!" 
+                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center transition duration-300">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Order Now on WhatsApp
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative max-w-md">
+                    <div class="bg-white p-6 rounded-xl shadow-xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fab fa-whatsapp text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">ToyStoreIndia</h3>
+                                <p class="text-xs text-gray-500">Online 24/7</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-gray-100 p-3 rounded-lg max-w-xs">
+                                <p>Hi! Send us a picture of the toy you want along with quantity.</p>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="bg-green-100 p-3 rounded-lg max-w-xs">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-image text-green-500 mr-2"></i>
+                                        <p>Toy Image.jpg</p>
+                                    </div>
+                                    <p class="mt-1">I want 2 of these</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-3 rounded-lg max-w-xs">
+                                <p>Great! We'll check availability and send you price & delivery details shortly.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex border-t pt-4">
+                            <input type="text" placeholder="Type your message..." class="flex-grow border rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-300">
+                            <button class="ml-2 w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-yellow-400 text-xs font-bold px-3 py-1 rounded-full transform rotate-6">
+                        No Minimum Order!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">How To Order In 4 Simple Steps</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="how-it-works-step">
+                    <h3 class="text-xl font-semibold mb-3">Find Your Toy</h3>
+                    <p class="text-gray-600">Take a picture or screenshot of any toy you want - from any website, store, or catalog.</p>
+                </div>
+                <div class="how-it-works-step">
+                    <h3 class="text-xl font-semibold mb-3">Message Us</h3>
+                    <p class="text-gray-600">Send the image to our WhatsApp (+91 8121612298) with your desired quantity.</p>
+                </div>
+                <div class="how-it-works-step">
+                    <h3 class="text-xl font-semibold mb-3">Get Quote</h3>
+                    <p class="text-gray-600">We'll quickly check availability and send you the best price with delivery details.</p>
+                </div>
+                <div class="how-it-works-step">
+                    <h3 class="text-xl font-semibold mb-3">Receive Delivery</h3>
+                    <p class="text-gray-600">Confirm your order and we'll deliver the toy to your doorstep!</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="https://wa.me/918121612298?text=Hi%20ToyStoreIndia,%20I%20want%20to%20order%20a%20toy!" 
+                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center transition duration-300">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Start Your Order Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Why Order From ToyStoreIndia?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">No Need To Search</h3>
+                    <p class="text-gray-600">Found a toy you like elsewhere? Just send us the picture - we'll handle the sourcing!</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-box-open text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">No Minimum Order</h3>
+                    <p class="text-gray-600">Order just 1 piece or 100 - we cater to all order sizes with the same care.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Personal Service</h3>
+                    <p class="text-gray-600">Real humans assisting you via WhatsApp - no bots, no automated responses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Message Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Here's What To Send Us</h2>
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-xl">
+                <div class="flex items-start mb-6">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                        <i class="fab fa-whatsapp text-green-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">Your WhatsApp Message Should Include:</h3>
+                        <ol class="list-decimal pl-5 mt-2 space-y-2 text-gray-700">
+                            <li>A clear picture of the toy you want</li>
+                            <li>Quantity needed (1 or more)</li>
+                            <li>Your delivery location (city)</li>
+                            <li>Any special requests (colors, sizes, etc.)</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-lightbulb text-yellow-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                <strong>Tip:</strong> The clearer your image, the faster we can find the exact toy you want!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold">How do I know if you can get the toy I want?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content mt-3 hidden">
+                        <p class="text-gray-600">We source toys from a wide network of suppliers. After you send us the picture, we'll quickly check availability and let you know within 24 hours if we can get it for you, along with the price.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold">What's the typical delivery time?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content mt-3 hidden">
+                        <p class="text-gray-600">Delivery time depends on the toy and your location. For common toys in metro cities, we can often deliver within 3-5 days. For rare or imported toys, it may take 1-2 weeks. We'll always provide an estimated delivery date before you confirm your order.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold">Do you deliver across India?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content mt-3 hidden">
+                        <p class="text-gray-600">Yes! We deliver to all major cities and towns across India. Delivery charges may vary based on your location, which we'll confirm when we provide the quote.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold">What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content mt-3 hidden">
+                        <p class="text-gray-600">We accept all major payment methods including UPI, credit/debit cards, net banking, and cash on delivery (subject to order value and location).</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold">What if I'm not happy with the toy I receive?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content mt-3 hidden">
+                        <p class="text-gray-600">Customer satisfaction is our priority. If the toy doesn't match what you ordered, we'll arrange for a return or replacement. Please notify us within 48 hours of delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-green-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready To Order Your Dream Toy?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Just send us a picture on WhatsApp and we'll take care of the rest!</p>
+            <a href="https://wa.me/918121612298?text=Hi%20ToyStoreIndia,%20I%20want%20to%20order%20a%20toy!" 
+               class="bg-white hover:bg-gray-100 text-green-600 font-bold py-4 px-10 rounded-full inline-flex items-center transition duration-300 text-lg">
+                <i class="fab fa-whatsapp mr-3 text-xl"></i> Chat With Us on WhatsApp
+            </a>
+            <div class="mt-6">
+                <p>Or call us: <a href="tel:+918121612298" class="font-semibold underline">+91 8121612298</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-robot text-green-400 mr-2"></i> ToyStoreIndia
+                    </h3>
+                    <p class="text-gray-400">Your one-stop solution for any toy you can imagine. Just send us a picture!</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition">How It Works</a></li>
+                        <li><a href="#benefits" class="text-gray-400 hover:text-white transition">Benefits</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp text-green-400 mr-2"></i>
+                            <a href="https://wa.me/918121612298" class="text-gray-400 hover:text-white transition">+91 8121612298</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                            <a href="mailto:info@toystoreindia.com" class="text-gray-400 hover:text-white transition">info@toystoreindia.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 ToyStoreIndia.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/918121612298?text=Hi%20ToyStoreIndia,%20I%20want%20to%20order%20a%20toy!" 
+           class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+            <i class="fab fa-whatsapp text-white text-3xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle content
+                content.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
